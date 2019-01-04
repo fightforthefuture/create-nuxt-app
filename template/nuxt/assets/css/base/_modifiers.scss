@@ -1,0 +1,39 @@
+/// Modifiers
+
+// Modifiers > Borders
+
+.is-rounded {
+  border-radius: $default-border-radius;
+}
+.is-rounded-top {
+  border-top-right-radius: $default-border-radius;
+  border-top-left-radius:  $default-border-radius;
+}
+.is-rounded-bottom {
+  border-bottom-right-radius: $default-border-radius;
+  border-bottom-left-radius:  $default-border-radius;
+}
+// .with-border {
+//   border: 1px solid $grey-light-color;
+// }
+.with-border-bottom {
+  border-bottom: 1px solid $grey-light-color;
+}
+
+// Modifiers > Fills
+
+.fill-grey-light {
+  background: $grey-light-color;
+}
+.fill-grey {
+  background: $grey-color;
+}
+.fill-grey-dark {
+  background: $grey-dark-color;
+}
+.fill-white {
+  background: $white;
+}
+// .fill-brand {
+//   background: $brand-color;
+// }

@@ -1,0 +1,17 @@
+{
+  "sharing": {
+    "title": "<%= siteTitle %>",
+    "description": "<%= description %>",
+    "image": "https://www.<%= domainName %>/share.jpg",
+    "defaultTweetText": "",
+    "url": "https://www.<%= domainName %>"
+  },
+  "googleAnalyticsId": "<%= googleAnalyticsId %>",
+  "actionNetworkPetitionId": "<%= actionNetworkPetitionId %>",
+  "callpowerCampaignId": "<%= callpowerCampaignId %>",
+  "donateUrl": "<%= donateUrl %>",
+  "mapboxToken": "<%= mapboxToken %>",
+  "callScript": "TODO: call script goes here",
+  "letterText": "Dear Legislators,\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat ipsum ut felis ultricies ultricies ut sed velit. Proin lobortis efficitur turpis in commodo. Integer faucibus, tellus ac faucibus luctus, sapien diam ultricies elit, vel eleifend quam orci et lorem.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat ipsum ut felis ultricies ultricies ut sed velit. Proin lobortis efficitur turpis in commodo. Integer faucibus, tellus ac faucibus luctus sapien.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat ipsum ut felis ultricies ultricies ut sed velit. Proin lobortis efficitur turpis in commodo.\n\nSincerely,\n\n[Your Name Here]",
+  "isArchived": false
+}

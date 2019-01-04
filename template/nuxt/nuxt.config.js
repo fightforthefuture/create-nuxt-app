@@ -14,7 +14,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: '<%= siteTitle %>',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -33,27 +33,39 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#fff' }, // TODO: choose theme color
+
+  /*
+  ** Router configuration
+  */
+  router: {
+    scrollBehavior: function (to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    }
+  },
 
   /*
   ** Global CSS
   */
   css: [<% if (ui === 'element-ui') { %>
-    'element-ui/lib/theme-chalk/index.css'<% } else if (ui === 'tailwind') { %>
-    '~/assets/css/tailwind.css'<% } else if (ui === 'vuetify') { %>
-    '~/assets/style/app.styl'<% } else if (ui === 'iview') { %>
-    'iview/dist/styles/iview.css'<% } else if (ui === 'ant-design-vue') { %>
-    'ant-design-vue/dist/antd.css'<% } %>
+    'element-ui/lib/theme-chalk/index.css',<% } else if (ui === 'tailwind') { %>
+    '~/assets/css/tailwind.css',<% } else if (ui === 'vuetify') { %>
+    '~/assets/style/app.styl',<% } else if (ui === 'iview') { %>
+    'iview/dist/styles/iview.css',<% } else if (ui === 'ant-design-vue') { %>
+    'ant-design-vue/dist/antd.css',<% } %>
+    '~/assets/css/main.scss'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [<% if (ui === 'element-ui') { %>
-    '@/plugins/element-ui'<% } else if (ui === 'vuetify') { %>
-    '@/plugins/vuetify'<% } else if (ui === 'iview') { %>
-    '@/plugins/iview'<% } else if (ui === 'ant-design-vue') { %>
-    '@/plugins/antd-ui'<% } %>
+    '@/plugins/element-ui',<% } else if (ui === 'vuetify') { %>
+    '@/plugins/vuetify',<% } else if (ui === 'iview') { %>
+    '@/plugins/iview',<% } else if (ui === 'ant-design-vue') { %>
+    '@/plugins/antd-ui',<% } %>
+    { src: '~/plugins/analytics.js', ssr: false },
+    { src: '~/plugins/hash-link-fix.js', ssr: false }
   ],
 
   /*
@@ -61,13 +73,14 @@ module.exports = {
   */
   modules: [<% if (axios === 'yes') { %>
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'<% } %><% if (ui === 'bootstrap') { %>,
+    '@nuxtjs/axios',<% } %><% if (ui === 'bootstrap') { %>
     // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt'<% } %><% if (ui === 'bulma') { %>,
+    'bootstrap-vue/nuxt',<% } %><% if (ui === 'bulma') { %>
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma'<% } %><% if (ui === 'buefy') { %>,
+    '@nuxtjs/bulma',<% } %><% if (ui === 'buefy') { %>
     // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy'<% } %>
+    'nuxt-buefy',<% } %>
+    'nuxt-sass-resources-loader'
   ],<% if (axios === 'yes') { %>
   /*
   ** Axios module configuration
@@ -75,6 +88,9 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },<% } %>
+  sassResources: [
+    '~/assets/css/_setup.scss'
+  ],
 
   /*
   ** Build configuration
@@ -109,5 +125,16 @@ module.exports = {
         })
       }<% } %>
     }
+  },
+  vendor: [
+    'babel-polyfill'
+  ],
+  babel: {
+    presets: [
+      ['vue-app', {
+        useBuiltIns: true,
+        targets: { ie: 9, uglify: true }
+      }]
+    ]
   }
 }
