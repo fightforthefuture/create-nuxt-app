@@ -8,7 +8,7 @@
 import axios from 'axios'
 
 // Add meta tags per page for Twitter and Facebook share cards
-export function createMetaTags(tags={}) {
+export function createMetaTags(tags = {}) {
   const meta = {}
 
   tags = Object.assign({
@@ -29,15 +29,14 @@ export function createMetaTags(tags={}) {
 
   const fakeTagNames = ['title', 'image', 'url']
 
-  for (let key of Object.keys(tags)) {
+  for (const key of Object.keys(tags)) {
     if (key.match(/^og\:/)) { // eslint-disable-line no-useless-escape
       meta[key] = {
         hid: key,
         property: key,
         content: tags[key]
       }
-    }
-    else if (!fakeTagNames.includes(key)) {
+    } else if (!fakeTagNames.includes(key)) {
       meta[key] = {
         hid: key,
         name: key,
@@ -50,7 +49,7 @@ export function createMetaTags(tags={}) {
 }
 
 // POST form data to a url
-export function postFormData(url, data={}) {
+export function postFormData(url, data = {}) {
   const axios = require('axios')
   const qs = require('qs')
 
@@ -62,7 +61,7 @@ export function postFormData(url, data={}) {
 }
 
 // POST form data to Mothership
-export function sendToMothership(data={}, submission={}) {
+export function sendToMothership(data = {}, submission = {}) {
   return postFormData('https://queue.fftf.xyz/action', data)
 }
 
@@ -72,21 +71,21 @@ export function simpleFormat(text) {
 }
 
 // Open a pop-up window (mostly for sharing actions)
-export function openPopup(url, title='popup', w=600, h=500) {
+export function openPopup(url, title = 'popup', w = 600, h = 500) {
   // Fixes dual-screen position
-  let dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
-  let dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
+  const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left
+  const dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top
 
-  let width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-  let height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+  const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width
+  const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height
 
-  let left = ((width / 2) - (w / 2)) + dualScreenLeft;
-  let top = ((height / 2) - (h / 2)) + dualScreenTop;
-  let newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+  const left = ((width / 2) - (w / 2)) + dualScreenLeft
+  const top = ((height / 2) - (h / 2)) + dualScreenTop
+  const newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left)
 
   // Puts focus on the newWindow
   if (window.focus) {
-    newWindow.focus();
+    newWindow.focus()
   }
 }
 
@@ -97,24 +96,24 @@ export function openPopup(url, title='popup', w=600, h=500) {
  * @param {int} duration: animation duration in ms
  */
 export function smoothScrollTo(endX, endY, duration) {
-  let startX = window.scrollX || window.pageXOffset,
-    startY = window.scrollY || window.pageYOffset,
-    distanceX = endX - startX,
-    distanceY = endY - startY,
-    startTime = new Date().getTime()
+  const startX = window.scrollX || window.pageXOffset
+  const startY = window.scrollY || window.pageYOffset
+  const distanceX = endX - startX
+  const distanceY = endY - startY
+  const startTime = new Date().getTime()
 
   duration = typeof duration !== 'undefined' ? duration : 400
 
   // Easing function
-  let easeInOutQuart = function(time, from, distance, duration) {
+  const easeInOutQuart = function (time, from, distance, duration) {
     if ((time /= duration / 2) < 1) return distance / 2 * time * time * time * time + from
     return -distance / 2 * ((time -= 2) * time * time * time - 2) + from
   }
 
-  let timer = window.setInterval(function() {
-    let time = new Date().getTime() - startTime,
-      newX = easeInOutQuart(time, startX, distanceX, duration),
-      newY = easeInOutQuart(time, startY, distanceY, duration)
+  const timer = window.setInterval(function () {
+    const time = new Date().getTime() - startTime
+    const newX = easeInOutQuart(time, startX, distanceX, duration)
+    const newY = easeInOutQuart(time, startY, distanceY, duration)
     if (time >= duration) {
       window.clearInterval(timer)
     }
@@ -124,8 +123,8 @@ export function smoothScrollTo(endX, endY, duration) {
 
 // Smooth scroll animation to an element by ID
 export function smoothScrollToElement(el, duration) {
-  duration = typeof duration !== 'undefined' ? duration : 500;
-  el = typeof el === 'string' ? document.querySelector(el) : el;
+  duration = typeof duration !== 'undefined' ? duration : 500
+  el = typeof el === 'string' ? document.querySelector(el) : el
 
   if (el) {
     smoothScrollTo(el.offsetLeft, el.offsetTop, duration)
@@ -134,25 +133,24 @@ export function smoothScrollToElement(el, duration) {
 
 // Smooth step scroll within an element
 export function smoothScrollWithinElement(el, endY, duration) {
-  let el = el,
-      startY = el.scrollTop,
-      change = endY - startY,
-      currentTime = 0,
-      increment = 20,
-      duration = typeof duration !== 'undefined' ? duration : 400,
+  const startY = el.scrollTop
+  const change = endY - startY
+  let currentTime = 0
+  const increment = 20
+  duration = typeof duration !== 'undefined' ? duration : 400
 
-  easeInOutQuad = function (time, start, change, duration) {
-    time /= duration/2;
-    if (time < 1) return change/2*time*time + start
+  const easeInOutQuad = function (time, start, change, duration) {
+    time /= duration / 2
+    if (time < 1) return change / 2 * time * time + start
     time--
-    return -change/2 * (time*(time-2) - 1) + start
-  },
+    return -change / 2 * (time * (time - 2) - 1) + start
+  }
 
-  smoothStepScroll = function() {
+  const smoothStepScroll = function () {
     currentTime += increment
-    let val = easeInOutQuad(currentTime, startY, change, duration)
+    const val = easeInOutQuad(currentTime, startY, change, duration)
     el.scrollTop = val
-    if(currentTime < duration) {
+    if (currentTime < duration) {
       setTimeout(smoothStepScroll, increment)
     }
   }
@@ -180,9 +178,8 @@ export async function geocodeState() {
       state.name = geo.subdivisions[0].names.en
       state.abbr = geo.subdivisions[0].iso_code
     }
-  }
-  catch (err) {
-    console.error(err) // eslint-disable-line no-console
+  } catch (err) {
+    console.error(err)
   }
 
   return state
@@ -195,26 +192,25 @@ export async function geocodeState() {
  * @returns {String}
  */
 export function getMobileOperatingSystem() {
-    let userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera
 
-    // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-        return "Windows Phone";
-    }
+  // Windows Phone must come first because its UA also contains "Android"
+  if (/windows phone/i.test(userAgent)) {
+    return 'Windows Phone'
+  }
 
-    if (/android/i.test(userAgent)) {
-        return "Android";
-    }
+  if (/android/i.test(userAgent)) {
+    return 'Android'
+  }
 
-    // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "iOS";
-    }
+  // iOS detection from: http://stackoverflow.com/a/9039885/177710
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return 'iOS'
+  }
 
-    return "unknown";
+  return 'unknown'
 }
 
 export function isMobileOS() {
   return getMobileOperatingSystem() !== 'unknown'
 }
-

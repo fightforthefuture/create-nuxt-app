@@ -55,20 +55,20 @@ function createImageFromFile(file) {
       }
 
       img.onerror = error => {
-        /* eslint-disable no-console, prefer-promise-reject-errors */
+        /* eslint-disable prefer-promise-reject-errors */
         console.error(error)
         reject(`Failed to load image: ${event.target.result}`)
-        /* eslint-enable no-console, prefer-promise-reject-errors */
+        /* eslint-enable prefer-promise-reject-errors */
       }
 
       img.src = event.target.result
     }
 
     reader.onerror = error => {
-      /* eslint-disable no-console, prefer-promise-reject-errors */
+      /* eslint-disable prefer-promise-reject-errors */
       console.error(error)
       reject(`Failed to read file: ${file}`)
-      /* eslint-enable no-console, prefer-promise-reject-errors */
+      /* eslint-enable prefer-promise-reject-errors */
     }
 
     reader.readAsDataURL(file)

@@ -15,5 +15,12 @@ module.exports = {
     'prettier'
   ],<% } %>
   // add your custom rules here
-  rules: {}
+  rules: {
+    'no-console': 'off',
+    'space-infix-ops': 'off',
+    'vue/no-v-html': 'off',
+    'vue/html-closing-bracket-newline': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'vue/html-indent': 'off'
+  }
 }
