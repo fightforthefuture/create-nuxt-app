@@ -16,7 +16,16 @@
 Make sure you have [npx](https://www.npmjs.com/package/npx) installed (`npx` is shipped by default since [npm](https://www.npmjs.com/get-npm) `5.2.0`)
 
 ```bash
-npx create-nuxt-app <my-project>
+npx fightforthefuture/create-nuxt-app <my-project>
+```
+
+Or from your local repo
+
+```bash
+cd create-nuxt-app
+npm install
+cd ..
+npx ./create-nuxt-app <my-project>
 ```
 
 Or with [yarn](https://yarnpkg.com/en/):
