@@ -55,20 +55,16 @@ function createImageFromFile(file) {
       }
 
       img.onerror = error => {
-        /* eslint-disable prefer-promise-reject-errors */
         console.error(error)
         reject(`Failed to load image: ${event.target.result}`)
-        /* eslint-enable prefer-promise-reject-errors */
       }
 
       img.src = event.target.result
     }
 
     reader.onerror = error => {
-      /* eslint-disable prefer-promise-reject-errors */
       console.error(error)
       reject(`Failed to read file: ${file}`)
-      /* eslint-enable prefer-promise-reject-errors */
     }
 
     reader.readAsDataURL(file)

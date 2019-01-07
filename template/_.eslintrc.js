@@ -18,6 +18,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'space-infix-ops': 'off',
+    'prefer-promise-reject-errors': 'off',
     'vue/no-v-html': 'off',
     'vue/html-closing-bracket-newline': 'off',
     'vue/max-attributes-per-line': 'off',
