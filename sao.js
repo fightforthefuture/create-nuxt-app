@@ -25,9 +25,37 @@ module.exports = {
       message: 'Project name',
       default: ':folderName:'
     },
+    siteTitle: {
+      message: 'Site Title',
+      default: 'My Project'
+    },
     description: {
       message: 'Project description',
-      default: `My ${superb()} Nuxt.js project`
+      default: 'A Fight for the Future website'
+    },
+    domainName: {
+      message: 'Domain name (without www)',
+      default: 'example.com'
+    },
+    googleAnalyticsId: {
+      message: 'Google Analytics ID',
+      default: null
+    },
+    actionNetworkPetitionId: {
+      message: 'Action Network Petition ID',
+      default: null
+    },
+    callpowerCampaignId: {
+      message: 'Callpower Campaign ID',
+      default: null
+    },
+    donateUrl: {
+      message: 'Donate URL',
+      default: 'https://donate.fightforthefuture.org/'
+    },
+    mapboxToken: {
+      message: 'Mapbox Token',
+      default: null
     },
     server: {
       message: 'Use a custom server framework',
@@ -82,13 +110,13 @@ module.exports = {
       message: 'Use axios module',
       type: 'list',
       choices: ['no', 'yes'],
-      default: 'no'
+      default: 'yes'
     },
     eslint: {
       message: 'Use eslint',
       type: 'list',
       choices: ['no', 'yes'],
-      default: 'no'
+      default: 'yes'
     },
     prettier: {
       message: 'Use prettier',
@@ -98,8 +126,8 @@ module.exports = {
     },
     author: {
       type: 'string',
-      message: 'Author name',
-      default: ':gitUser:',
+      message: 'Author name (This isn\'t used for anything. Just hit enter...)',
+      default: 'FFTF',
       store: true
     },
     pm: {

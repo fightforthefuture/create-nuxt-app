@@ -1,0 +1,12 @@
+// Page Header
+
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: $gutter 0 $gutter*2;
+  z-index: 100;
+  background: $grey-light-color;
+}
